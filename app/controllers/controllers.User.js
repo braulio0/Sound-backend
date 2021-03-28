@@ -1,16 +1,19 @@
 
 const db = require("./../models");
 const User = db.User;
-
+const bcrypt = require('bcrypt');
 
 exports.create = async (req, res, next) => {
-  
+ let password = req.body.password;
+const salt = await bcrypt.genSalt(10);
+  password = await bcrypt.hash(password, salt);
+
     const user = {
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
         age:req.body.age,
-        password:req.body.password,
+        password,
         role:req.body.role,
     };
     //Create Login
