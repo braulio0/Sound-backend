@@ -16,13 +16,13 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 //build database
-/*
+//
 db.sequelize.sync({ force: true }).then(() => {
 	console.log("Drop and rebuild database");
 });
-*/
+
 //conect database
-db.sequelize.sync();
+//db.sequelize.sync();
 
 app.get("/", (req, res) => {
   res.json({ message: "hola pinche putita" });
