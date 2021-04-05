@@ -1,12 +1,9 @@
 const db = require("./../models");
 const User = db.User;
-const bcrypt = require("bcrypt");
+const { encrypt, validate } = require("./controller.encrypt");
 
-exports.create = async (req, res, next) => {
-  let password = req.body.password;
-  const salt = await bcrypt.genSalt(10);
-  password = await bcrypt.hash(password, salt);
-
+exports.create = async (req, res) => {
+  const password = await encrypt(req.body.password);
   const user = {
     name: req.body.name,
     username: req.body.username,
@@ -30,18 +27,15 @@ exports.create = async (req, res, next) => {
 exports.findOne = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
+  let validatePassword;
 
   const user = await User.findOne({
     where: { email },
   });
-  if (user) {
-    const validatePassword = await bcrypt.compare(password, user.password);
-    if (validatePassword) {
-      res.send(user);
-    } else {
-      res.status(400).json({ error: "invalid password" });
-    }
-  } else {
-    res.status(404).json({ error: "User not exist" });
-  }
+  !user
+    ? res.status(404).json({ error: "User does not exist" })
+    : ((validatePassword = await validate(password, user.password)),
+      !validatePassword
+        ? res.status(400).json({ error: "invalid password" })
+        : res.send(user));
 };
