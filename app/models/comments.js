@@ -1,12 +1,11 @@
 module.exports = (sequelize, Sequelize) => {
-	const Posts= sequelize.define("posts", {
-		own:{
+	const Comments = sequelize.define("comments", {
+		own: {
 			type: Sequelize.STRING,
-            
 		},
-		text: {
+		message: {
 			type: Sequelize.STRING,
 		},
 	});
-	return Posts;
+	return Comments;
 };

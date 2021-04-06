@@ -13,17 +13,18 @@ const sequelize = new Sequelize(DB, USER, PASSWORD, {
 	dialect,
 	operatorsAliases: false,
 	pool,
- define: {
-        timestamps: false
-    }
-
+	define: {
+		timestamps: false,
+	},
 });
 
-const db = {}
+const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.User = require("./user.js")(sequelize, Sequelize);
 db.Songs = require("./songs.js")(sequelize, Sequelize);
+db.Posts = require("./posts.js")(sequelize, Sequelize);
+db.Comment = require(".comments.js")(sequelize, Sequelize);
 module.exports = db;

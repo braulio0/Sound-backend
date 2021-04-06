@@ -1,6 +1,6 @@
 const db = require("./../models");
 const User = db.User;
-const { encrypt, validate } = require("./controller.encrypt");
+const { encrypt, validate } = require("./controllers.encrypt");
 
 exports.create = async (req, res) => {
   const password = await encrypt(req.body.password);
