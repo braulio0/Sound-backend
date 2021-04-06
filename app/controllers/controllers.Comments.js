@@ -1,4 +1,4 @@
-const db = require("./../models");
+const db = require("../models");
 const Comment = db.comments;
 
 exports.create = async (req, res) => {
@@ -8,6 +8,7 @@ exports.create = async (req, res) => {
     const comment = {
       own: req.body.username,
       message: req.body.message,
+      postsid:req.boby.postsid,
     };
     Comment.create(comment)
       .then((data) => {

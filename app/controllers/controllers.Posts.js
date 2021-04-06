@@ -1,12 +1,11 @@
-const db = require("./../models");
-const { validate } = require("./controller.encrypt");
+const db = require("../models");
+const { validate } = require("./controllers.encrypt");
 const Posts = db.Posts;
 
 exports.create = async (req, res) => {
- const message= await validate(req.bodty.text)
+ const message= await validate(req.body.text)
  if(!message){
     const posts = {
-        id: req.body.id,
         own: req.body.own,
         text: req.body.text,
       };
