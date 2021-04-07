@@ -20,7 +20,7 @@ exports.create = async (req, res) => {
       });
   } else {
     res.status(404).send({
-      message: "You are banned",
+      message: "You are banned"+message,
     });
   }
 };

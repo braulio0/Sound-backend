@@ -2,8 +2,8 @@ const db = require("./../models");
 const Comment = db.Comment;
 
 exports.create = async (req, res) => {
-  //const message = await validate(req.body.message);
-
+  const words = await banWords(req.body.message);
+  if (!words){
   const comment = {
     own: req.body.own,
     message: req.body.message,
@@ -18,4 +18,10 @@ exports.create = async (req, res) => {
         message: err.message || " Some erros ocurred while creating a post",
       });
     });
+  }else{
+    res.status(404).send({
+      message: "You are banned"+words,
+    });
+  }
+
 };

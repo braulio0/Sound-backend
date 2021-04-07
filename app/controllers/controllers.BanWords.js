@@ -7,7 +7,6 @@ const normaliza = (message) =>
 const ban = (message) => {
 	let banWord = 0;
 	let banWordsUser = {};
-	let dict = {};
 	let banWords = {
 		puta: 0,
 		putita: 0,
@@ -28,10 +27,13 @@ const ban = (message) => {
 	for (let word in banWords) {
 		if (banWords[word] > 0) {
 			banWordsUser[word] = banWords[word];
+			
 		}
 	}
+
 	if (banWord > 0) {
-		return true;
+		return banWordsUser;
+
 	} else {
 		return false;
 	}
