@@ -27,13 +27,11 @@ const ban = (message) => {
 	for (let word in banWords) {
 		if (banWords[word] > 0) {
 			banWordsUser[word] = banWords[word];
-			
 		}
 	}
 
 	if (banWord > 0) {
 		return banWordsUser;
-
 	} else {
 		return false;
 	}
