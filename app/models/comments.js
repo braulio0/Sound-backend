@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-	const Comments = sequelize.define("comments", {
+	const Comment = sequelize.define("comment", {
 		own: {
 			type: Sequelize.STRING,
 		},
@@ -7,5 +7,5 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.STRING,
 		},
 	});
-	return Comments;
+	return Comment;
 };

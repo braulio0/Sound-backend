@@ -1,9 +1,7 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const {
-	create,
-} = require("./../controllers/controllers.Components");
+const { create } = require("./../controllers/controllers.Comments.js");
 
 router.post("/registro", create);
 

@@ -26,12 +26,11 @@ db.sequelize = sequelize;
 db.User = require("./user.js")(sequelize, Sequelize);
 db.Songs = require("./songs.js")(sequelize, Sequelize);
 db.Posts = require("./posts.js")(sequelize, Sequelize);
-db.Comment = require(".comments.js")(sequelize, Sequelize);
+db.Comment = require("./comments.js")(sequelize, Sequelize);
 
-
-db.Posts.hasMany(db.Comment, { as: "comments" });
+db.Posts.hasMany(db.Comment, { as: "comment" });
 db.Comment.belongsTo(db.Posts, {
-  foreignKey: "postsid",
-  as: "posts",
+	foreignKey: "postsid",
+	as: "posts",
 });
 module.exports = db;

@@ -1,25 +1,21 @@
-const db = require("../models");
-const Comment = db.comments;
+const db = require("./../models");
+const Comment = db.Comment;
 
 exports.create = async (req, res) => {
-  const message = await validate(req.body.message);
+  //const message = await validate(req.body.message);
 
-  if (!message) {
-    const comment = {
-      own: req.body.username,
-      message: req.body.message,
-      postsid:req.boby.postsid,
-    };
-    Comment.create(comment)
-      .then((data) => {
-        res.send(data);
-      })
-      .catch((err) => {
-        res.status(505).send({ message: err.message });
+  const comment = {
+    own: req.body.own,
+    message: req.body.message,
+    postId: req.body.postId,
+  };
+  Comment.create(comment)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || " Some erros ocurred while creating a post",
       });
-  } else {
-    res.status(500).send.json({
-      message: "Incumples algunas normas con el vocabulario",
     });
-  }
 };
