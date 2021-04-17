@@ -26,3 +26,14 @@ exports.create = async (req, res) => {
     });
   }
 };
+exports.findAll = async (req, res) => {
+  const postId = req.params.postId;
+
+  Comment.findAll({ where: { postId: postId } })
+    .then((comment) => {
+      res.send(comment);
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
+    });
+};

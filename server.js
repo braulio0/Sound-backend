@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 //build database
 //
 //db.sequelize.sync({ force: true }).then(() => {
-// console.log("Drop and rebuild database");
+//console.log("Drop and rebuild database");
 //});
 
 //conect database

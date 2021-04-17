@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-
-const { create } = require("./../controllers/controllers.Comments.js");
+const { create, findAll } = require("./../controllers/controllers.Comments.js");
 
 router.post("/registro", create);
-
+router.get("/comments/:postId", findAll);
 module.exports = router;
